@@ -6,19 +6,65 @@ using Random = System.Random;
 
 public class Superman : MonoBehaviour
 {
-    [SerializeField] private Transform[] badMinions;
+    [SerializeField] private List<GameObject> badMinions;
     [SerializeField] private Transform superminion;
     [SerializeField] private float speed;
+    [SerializeField] private float radius;
+    [SerializeField] private Rigidbody[] badMinionsBody;
+    private GameObject targetBadMinion;
 
     private void Start()
     {
-        superminion.position = Vector3.MoveTowards(superminion.position, badMinions[0].position, Time.deltaTime * speed);
+        targetBadMinion = FindBadMinion();
     }
 
     private void Update()
     {
+        if (targetBadMinion == null)
+        {
+            targetBadMinion = FindBadMinion();
+        }
 
+        superminion.position = Vector3.MoveTowards(superminion.position, targetBadMinion.transform.position, Time.deltaTime * speed);
+        superminion.LookAt(targetBadMinion.transform.position);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Rigidbody>() != null)
+        {
+            collision.rigidbody.AddForce(10, 10, 0);
+            targetBadMinion = null;
+        }
+    }
+
+    private GameObject FindBadMinion()
+    {
+        GameObject nearMinion = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (GameObject minion in badMinions)
+        {
+            if (minion == null)
+            {
+                badMinions.Remove(minion);
+                continue;
+            }
+
+            float distance = Vector3.Distance(transform.position, minion.transform.position);
+            
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearMinion = minion;
+            }
+        }
+        return nearMinion;
+    }
+
+
+
+
 
 
 
