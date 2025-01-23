@@ -1645,9 +1645,10 @@ GameObject:
   m_Component:
   - component: {fileID: 135930686}
   - component: {fileID: 135930687}
+  - component: {fileID: 135930688}
   m_Layer: 0
   m_Name: BadMinion  (1)
-  m_TagString: Untagged
+  m_TagString: BadMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1700,6 +1701,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &135930688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135930685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd79775b33446af4db0cadd92848547c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDone: 0
 --- !u!1 &144083866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,9 +2693,10 @@ GameObject:
   m_Component:
   - component: {fileID: 208361680}
   - component: {fileID: 208361681}
+  - component: {fileID: 208361682}
   m_Layer: 0
   m_Name: BadMinion  (3)
-  m_TagString: Untagged
+  m_TagString: BadMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2734,6 +2749,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &208361682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208361679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd79775b33446af4db0cadd92848547c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDone: 0
 --- !u!1 &218341895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3626,9 +3654,10 @@ GameObject:
   m_Component:
   - component: {fileID: 295080052}
   - component: {fileID: 295080053}
+  - component: {fileID: 295080054}
   m_Layer: 0
   m_Name: BadMinion  (2)
-  m_TagString: Untagged
+  m_TagString: BadMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3682,6 +3711,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &295080054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295080051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd79775b33446af4db0cadd92848547c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDone: 0
 --- !u!1 &307681801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4316,6 +4358,7 @@ MonoBehaviour:
   - {fileID: 295080053}
   - {fileID: 135930687}
   - {fileID: 208361681}
+  target: {fileID: 706867586}
 --- !u!64 &347630604
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7725,6 +7768,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &706867585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706867586}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &706867586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706867585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.010786226, y: 2.0798876, z: 1.8003455}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &710321906
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,9 +9684,10 @@ GameObject:
   m_Component:
   - component: {fileID: 872367334}
   - component: {fileID: 872367335}
+  - component: {fileID: 872367336}
   m_Layer: 0
   m_Name: 'BadMinion '
-  m_TagString: Untagged
+  m_TagString: BadMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9626,7 +9701,7 @@ Transform:
   m_GameObject: {fileID: 872367333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: -1.243, y: 1.0901, z: -1.191}
+  m_LocalPosition: {x: -1.21, y: 1.0901, z: -1.183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9666,6 +9741,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &872367336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872367333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd79775b33446af4db0cadd92848547c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDone: 0
 --- !u!1 &873151681
 GameObject:
   m_ObjectHideFlags: 0
@@ -24226,6 +24314,7 @@ SceneRoots:
   - {fileID: 1614198250}
   - {fileID: 703230307}
   - {fileID: 1312886996}
+  - {fileID: 706867586}
   - {fileID: 347630602}
   - {fileID: 1149456116}
   - {fileID: 1757922779}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,30 +14,76 @@ public class Superman : MonoBehaviour
     [SerializeField] private Rigidbody[] badMinionsBody;
     private GameObject targetBadMinion;
 
+    [SerializeField] private Transform target;
+    private int indexCount;
+
     private void Start()
     {
-        targetBadMinion = FindBadMinion();
+        target.position = badMinions[0].transform.position;
+
+        //targetBadMinion = FindBadMinion();
     }
 
     private void Update()
     {
-        if (targetBadMinion == null)
+        //if (targetBadMinion == null)
+        //{
+        //    targetBadMinion = FindBadMinion();
+        //}
+
+        if (indexCount <= 3)
         {
-            targetBadMinion = FindBadMinion();
+            superminion.position = Vector3.MoveTowards(superminion.position, badMinionsBody[indexCount].position, Time.deltaTime * speed);
+            superminion.LookAt(badMinionsBody[indexCount].position);
         }
 
-        superminion.position = Vector3.MoveTowards(superminion.position, targetBadMinion.transform.position, Time.deltaTime * speed);
-        superminion.LookAt(targetBadMinion.transform.position);
+        //if (superminion.position == badMinionsBody[indexCount].position && indexCount <= 3)
+        //{
+        //    indexCount++;
+
+        //    //if (superminion.position != badMinionsBody[badMinionsBody.Length - 1].position)
+        //    //{
+        //    //    target.position = badMinions[indexCount].transform.position;
+        //    //}
+        //}
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter (Collision collision)
     {
-        if (collision.gameObject.GetComponent<Rigidbody>() != null)
+        GameObject collidedObject = collision.gameObject;
+
+        if (collidedObject.CompareTag("BadMinion"))
         {
-            collision.rigidbody.AddForce(10, 10, 0);
-            targetBadMinion = null;
+            BadMinion minion = collidedObject.GetComponent<BadMinion>();
+
+            if (minion != null && !minion.IsDone)
+            {
+                indexCount++;
+
+                minion.IsDone = true;
+   
+                collision.rigidbody.AddForce(10, 10, 0, ForceMode.Impulse);
+            }
         }
+
+        //if (collision.gameObject.GetComponent<Rigidbody>() != null)
+        //{
+        //    if (indexCount <= 3)
+        //    {
+        //        indexCount++;
+        //        Debug.Log("Touch");
+        //    }
+        //}
     }
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.GetComponent<Rigidbody>() != null)
+    //    {
+    //        collision.rigidbody.AddForce(10, 10, 0);
+
+    //    }
+    //}
 
     private GameObject FindBadMinion()
     {
