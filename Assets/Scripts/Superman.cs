@@ -7,45 +7,47 @@ using Random = System.Random;
 
 public class Superman : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> badMinions;
+    [SerializeField] private BadMinion[] badMinions;
     [SerializeField] private Transform superminion;
     [SerializeField] private float speed;
     [SerializeField] private float radius;
     [SerializeField] private Rigidbody[] badMinionsBody;
+    [SerializeField] private new Transform camera;
     private GameObject targetBadMinion;
 
     [SerializeField] private Transform target;
+    [SerializeField]private int power;
     private int indexCount;
 
     private void Start()
     {
-        target.position = badMinions[0].transform.position;
-
-        //targetBadMinion = FindBadMinion();
+        badMinions = FindObjectsOfType<BadMinion>();
     }
-
+        
     private void Update()
     {
-        //if (targetBadMinion == null)
-        //{
-        //    targetBadMinion = FindBadMinion();
-        //}
-
-        if (indexCount <= 3)
+        if (indexCount > 3)
         {
-            superminion.position = Vector3.MoveTowards(superminion.position, badMinionsBody[indexCount].position, Time.deltaTime * speed);
-            superminion.LookAt(badMinionsBody[indexCount].position);
+            indexCount = 0;
+            
+            //foreach (BadMinion badMinion in badMinions)
+            //{
+            //    if (!badMinion.IsDone)
+            //    {
+            //        badMinions[0] = badMinion;
+            //    }
+            //}
         }
 
-        //if (superminion.position == badMinionsBody[indexCount].position && indexCount <= 3)
-        //{
-        //    indexCount++;
-
-        //    //if (superminion.position != badMinionsBody[badMinionsBody.Length - 1].position)
-        //    //{
-        //    //    target.position = badMinions[indexCount].transform.position;
-        //    //}
-        //}
+        if (!badMinions[indexCount].IsDone)
+        {
+            superminion.position = Vector3.MoveTowards(superminion.position, badMinions[indexCount].transform.position, Time.deltaTime * speed);
+            superminion.LookAt(badMinions[indexCount].transform.position);
+        }
+        else
+        {
+            indexCount++;
+        }
     }
 
     private void OnCollisionEnter (Collision collision)
@@ -56,13 +58,11 @@ public class Superman : MonoBehaviour
         {
             BadMinion minion = collidedObject.GetComponent<BadMinion>();
 
-            if (minion != null && !minion.IsDone)
+            if (!minion.IsDone)
             {
                 indexCount++;
-
                 minion.IsDone = true;
-   
-                collision.rigidbody.AddForce(10, 10, 0, ForceMode.Impulse);
+                Push(collision);
             }
         }
 
@@ -76,6 +76,12 @@ public class Superman : MonoBehaviour
         //}
     }
 
+    private void Push(Collision minion)
+    {
+        Vector3 direction = minion.transform.position - superminion.position;
+        minion.rigidbody.AddForce(direction.normalized * power, ForceMode.Impulse);
+    }
+
     //private void OnCollisionExit(Collision collision)
     //{
     //    if (collision.gameObject.GetComponent<Rigidbody>() != null)
@@ -85,29 +91,29 @@ public class Superman : MonoBehaviour
     //    }
     //}
 
-    private GameObject FindBadMinion()
-    {
-        GameObject nearMinion = null;
-        float minDistance = Mathf.Infinity;
+    //private GameObject FindBadMinion()
+    //{
+    //    GameObject nearMinion = null;
+    //    float minDistance = Mathf.Infinity;
 
-        foreach (GameObject minion in badMinions)
-        {
-            if (minion == null)
-            {
-                badMinions.Remove(minion);
-                continue;
-            }
+    //    foreach (GameObject minion in badMinions)
+    //    {
+    //        if (minion == null)
+    //        {
+    //            badMinions.Remove(minion);
+    //            continue;
+    //        }
 
-            float distance = Vector3.Distance(transform.position, minion.transform.position);
+    //        float distance = Vector3.Distance(transform.position, minion.transform.position);
             
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                nearMinion = minion;
-            }
-        }
-        return nearMinion;
-    }
+    //        if (distance < minDistance)
+    //        {
+    //            minDistance = distance;
+    //            nearMinion = minion;
+    //        }
+    //    }
+    //    return nearMinion;
+    //}
 
 
 
