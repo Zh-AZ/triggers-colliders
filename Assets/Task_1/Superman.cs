@@ -65,11 +65,15 @@ public class Superman : MonoBehaviour
             }
         }
 
+        Jump();
+    }
+
+    private void Jump()
+    {
         if (isAllBadMinionEjected)
         {
             if (isGrounded)
             {
-                //superminion.LookAt(camera.position);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
             }
