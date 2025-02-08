@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Weightlessness : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody thisObject;
+
+    private void Start()
     {
-        
+        thisObject = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        thisObject.useGravity = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
-        {
-            rigidbody.useGravity = false;
-        }
+        thisObject.useGravity = true;
     }
 }
