@@ -11,12 +11,10 @@ public class Force : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        redBall.AddForce(Vector3.back * force, ForceMode.Impulse);
+        Push();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Push()
     {
-        
+        redBall.AddForce(Vector3.back * force, ForceMode.Impulse);
     }
 }
