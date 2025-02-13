@@ -9,13 +9,6 @@ public class BoomController : MonoBehaviour
     [SerializeField] private float radius;
     private Rigidbody[] blocks;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Rigidbody[] blocks = FindObjectsOfType<Rigidbody>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         timeToExplosion -= Time.deltaTime;

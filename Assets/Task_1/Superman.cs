@@ -9,17 +9,10 @@ public class Superman : MonoBehaviour
 {
     [SerializeField] private BadMinion[] badMinions;
     [SerializeField] private Transform superminion;
-    [SerializeField] private Rigidbody[] badMinionsBody;
-    [SerializeField] private Transform target;
-    [SerializeField] private new Transform camera;
     [SerializeField] private float speed;
-    [SerializeField] private float radius;
     [SerializeField] private int power;
     [SerializeField] private float jumpForce;
-    
-    private GameObject targetBadMinion;
     private Rigidbody rb;
-    
     private int indexCount;
     private int remainingBadMinionCount;
     private bool isAllBadMinionEjected;
@@ -34,9 +27,7 @@ public class Superman : MonoBehaviour
     private void Update()
     {
         if (indexCount > 3)
-        {
             indexCount = 0;
-        }
 
         if (!badMinions[indexCount].IsDone)
         {
@@ -48,9 +39,7 @@ public class Superman : MonoBehaviour
             foreach (BadMinion badMinion in badMinions)
             {
                 if (!badMinion.IsDone)
-                {
                     ++remainingBadMinionCount;
-                }
             }
 
             if (remainingBadMinionCount >= 1) 
@@ -102,6 +91,7 @@ public class Superman : MonoBehaviour
         Vector3 direction = minion.transform.position - superminion.position;
         minion.rigidbody.AddForce(direction.normalized * power, ForceMode.Impulse);
     }
+
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -109,47 +99,4 @@ public class Superman : MonoBehaviour
             isGrounded = true;
         }
     }
-
-    //[SerializeField] private Transform[] points;
-    //[SerializeField] private Transform[] minions;
-    //[SerializeField] private float speed;
-
-    //private Random randomTarget = new Random();
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    rb = GetComponent<Rigidbody>();
-
-    //    for (int i = 0; i < targets.Length; i++)
-    //    {
-    //        targets[i] = points[randomTarget.Next(10)].position;
-    //    }
-    //}
-
-    ////private void OnCollisionEnter(Collision collision)
-    ////{
-    ////    if (collision.gameObject.CompareTag("Ground"))
-    ////    {
-    ////        isGrounded = true;
-    ////    }
-    ////}
-
-
-
-    //private IEnumerator MinionGo()
-    //{
-    //    for (int i = 0; i < minions.Length;i++)
-    //    {
-    //        minions[i].position = Vector3.MoveTowards(minions[i].position, targets[i], Time.deltaTime * speed);
-    //        minions[i].LookAt(targets[i]);
-
-    //        if (minions[i].position == targets[i])
-    //        {
-    //            targets[i] = points[randomTarget.Next(10)].position;
-    //        }
-
-    //        yield return null;
-    //    }
-    //}
 }
